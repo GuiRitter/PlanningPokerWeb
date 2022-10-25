@@ -87,7 +87,8 @@ function App(props) {
 		}
 	});
 
-	return <><select
+	return <><div className='placeholder' ></div><select
+		className='color-theme-select'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}
 	><option>Light</option><option>Dark</option></select></>;

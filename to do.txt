@@ -1,7 +1,7 @@
 ✓ add combo box to toggle light/dark theme
 ✗ add cookie to remember combo box (not kept by the company browser either)
 ✓ add local storage to remember combo box (will not remember on company browser, but we'll have to live with that)
-layout with fixed size div centered on the remaining space above and the combo box on the space below occupying as little space as possible
+✓ layout with fixed size div centered on the remaining space above and the combo box on the space below occupying as little space as possible
 replace the fixed size div with a field for user name, a "Connect" button and an Id field
 when opening the page with an Id in the URL, fill the Id in the field
 to do...
