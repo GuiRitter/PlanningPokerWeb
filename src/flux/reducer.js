@@ -1,8 +1,10 @@
 import * as type from './type';
 
 import * as theme from '../constant/colorTheme';
+import { LOCAL_STORAGE_NAME } from '../constant/system';
 
 import { getLog } from '../util/log';
+import { updateLocalStorage } from '../util/persistence';
 
 const log = getLog('flux.reducer.');
 
@@ -19,30 +21,33 @@ const reducer = (currentState = initialState, action) => {
 	switch (action.type) {
 
 		case type.ABORT_REQUEST:
-			return {
+			return updateLocalStorage({
 				...currentState,
 				abortController: null,
 				isLoading: false,
-			};
+			});
 
 		case type.ENABLE_ABORT_REQUEST:
-			return {
+			return updateLocalStorage({
 				...currentState,
 				abortMethod: currentState.isLoading ? action.abortMethod : null
-			};
+			});
 
 		case type.LOADING:
-			return {
+			return updateLocalStorage({
 				...currentState,
 				abortController: action.isLoading ? currentState.abortController : null,
 				isLoading: action.isLoading
-			};
+			});
+
+		case type.RESTORE_FROM_LOCAL_STORAGE:
+			return JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME)) || initialState;
 
 		case type.TOGGLE_THEME:
-			return {
+			return updateLocalStorage({
 				...currentState,
 				colorTheme: (currentState.colorTheme === theme.DARK) ? theme.LIGHT : theme.DARK
-			};
+			});
 
 		default: return currentState;
 	}

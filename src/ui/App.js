@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as colorTheme from '../constant/colorTheme';
 
-import { toggleTheme } from '../flux/action/index';
+import { restoreFromLocalStorage, toggleTheme } from '../flux/action/index';
 
 import { getLog } from '../util/log';
 
@@ -11,14 +11,26 @@ import './App.css';
 
 const log = getLog('App.');
 
-function componentDidMount(props, dispatch, theme) {
-
-	log('componentDidMount', { props, theme });
+function setFieldFromState(themeField, theme) {
+	if (themeField && (themeField.value !== theme)) {
+		themeField.value = theme;
+	}
 }
 
-function componentDidUpdate(props, prevProps, dispatch, theme) {
+function componentDidMount(props, dispatch, themeField, theme) {
+
+	log('componentDidMount', { props, theme });
+
+	dispatch(restoreFromLocalStorage());
+
+	setFieldFromState(themeField, theme);
+}
+
+function componentDidUpdate(props, prevProps, dispatch, themeField, theme) {
 
 	log('componentDidUpdate', { props, prevProps, theme });
+
+	setFieldFromState(themeField, theme);
 
 	switch (theme) {
 
@@ -62,19 +74,22 @@ function App(props) {
 
 	const theme = useSelector(state => ((state || {}).reducer || {}).colorTheme);
 
+	const [themeField, setThemeField] = useState(null);
+
 	log('App', { theme });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps, dispatch, theme);
+			componentDidUpdate(props, prevProps, dispatch, themeField, theme);
 		} else {
 			didMountRef.current = true;
-			componentDidMount(props, dispatch, theme);
+			componentDidMount(props, dispatch, themeField, theme);
 		}
 	});
 
 	return <><select
 		onChange={() => dispatch(toggleTheme())}
+		ref={ref => { if (ref) { setThemeField(ref); } }}
 	><option>Light</option><option>Dark</option></select></>;
 }
 

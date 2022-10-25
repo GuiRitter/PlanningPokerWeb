@@ -1,3 +1,3 @@
-export const DARK = 'DARK';
+export const DARK = 'Dark';
 
-export const LIGHT = 'LIGHT';
+export const LIGHT = 'Light';
