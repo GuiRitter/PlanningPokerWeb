@@ -17,6 +17,15 @@ function setFieldFromState(themeField, theme) {
 	}
 }
 
+function setFieldFromPathName(idField) {
+	if (idField) {
+		const pathName = window.location.pathname;
+		if (pathName) {
+			idField.value = pathName.replace('/', '');
+		}
+	}
+}
+
 function componentDidMount(props, dispatch, themeField, theme) {
 
 	log('componentDidMount', { props, theme });
@@ -26,11 +35,12 @@ function componentDidMount(props, dispatch, themeField, theme) {
 	setFieldFromState(themeField, theme);
 }
 
-function componentDidUpdate(props, prevProps, dispatch, themeField, theme) {
+function componentDidUpdate(props, prevProps, dispatch, themeField, theme, idField) {
 
 	log('componentDidUpdate', { props, prevProps, theme });
 
 	setFieldFromState(themeField, theme);
+	setFieldFromPathName(idField);
 
 	switch (theme) {
 
@@ -75,19 +85,23 @@ function App(props) {
 	const theme = useSelector(state => ((state || {}).reducer || {}).colorTheme);
 
 	const [themeField, setThemeField] = useState(null);
+	const [idField, setIdField] = useState(null);
 
 	log('App', { theme });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps, dispatch, themeField, theme);
+			componentDidUpdate(props, prevProps, dispatch, themeField, theme, idField);
 		} else {
 			didMountRef.current = true;
 			componentDidMount(props, dispatch, themeField, theme);
 		}
 	});
 
-	return <><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input className='id-input' /><select
+	return <><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input
+		className='id-input'
+		ref={ref => { if (ref) { setIdField(ref); } }}
+	/><select
 		className='color-theme-select'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}
