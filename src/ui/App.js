@@ -98,11 +98,11 @@ function App(props) {
 		}
 	});
 
-	return <><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input
+	return <><div className='main'><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input
 		className='id-input'
 		ref={ref => { if (ref) { setIdField(ref); } }}
-	/><select
-		className='color-theme-select'
+	/></div><select
+		className='footer'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}
 	><option>Light</option><option>Dark</option></select></>;
