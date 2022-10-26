@@ -4,7 +4,7 @@
 ✓ layout with fixed size div centered on the remaining space above and the combo box on the space below occupying as little space as possible
 ✓ replace the fixed size div with a field for user name, a "Connect" button and an Id field
 ✓ when opening the page with an Id in the URL, fill the Id in the field
-compartmentalize layout
+✓ compartmentalize layout
 add switching between "Connect" and "Vote"
 decide what to do when in "Vote" and a URL is accessed
 to do...

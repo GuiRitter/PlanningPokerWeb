@@ -7,6 +7,8 @@ import { restoreFromLocalStorage, toggleTheme } from '../flux/action/index';
 
 import { getLog } from '../util/log';
 
+import Connect from './Connect';
+
 import './App.css';
 
 const log = getLog('App.');
@@ -14,15 +16,6 @@ const log = getLog('App.');
 function setFieldFromState(themeField, theme) {
 	if (themeField && (themeField.value !== theme)) {
 		themeField.value = theme;
-	}
-}
-
-function setFieldFromPathName(idField) {
-	if (idField) {
-		const pathName = window.location.pathname;
-		if (pathName) {
-			idField.value = pathName.replace('/', '');
-		}
 	}
 }
 
@@ -35,12 +28,11 @@ function componentDidMount(props, dispatch, themeField, theme) {
 	setFieldFromState(themeField, theme);
 }
 
-function componentDidUpdate(props, prevProps, dispatch, themeField, theme, idField) {
+function componentDidUpdate(props, prevProps, dispatch, themeField, theme) {
 
 	log('componentDidUpdate', { props, prevProps, theme });
 
 	setFieldFromState(themeField, theme);
-	setFieldFromPathName(idField);
 
 	switch (theme) {
 
@@ -85,23 +77,19 @@ function App(props) {
 	const theme = useSelector(state => ((state || {}).reducer || {}).colorTheme);
 
 	const [themeField, setThemeField] = useState(null);
-	const [idField, setIdField] = useState(null);
 
-	log('App', { theme });
+	log('App', { props, prevProps, theme });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps, dispatch, themeField, theme, idField);
+			componentDidUpdate(props, prevProps, dispatch, themeField, theme);
 		} else {
 			didMountRef.current = true;
 			componentDidMount(props, dispatch, themeField, theme);
 		}
 	});
 
-	return <><div className='main'><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input
-		className='id-input'
-		ref={ref => { if (ref) { setIdField(ref); } }}
-	/></div><select
+	return <><div className='main'><Connect/></div><select
 		className='footer'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}
