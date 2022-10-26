@@ -87,7 +87,7 @@ function App(props) {
 		}
 	});
 
-	return <><div className='placeholder' ></div><select
+	return <><input className='user-name-input' /><input className='connect-button' type='button' value='Connect' /><input className='id-input' /><select
 		className='color-theme-select'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}
