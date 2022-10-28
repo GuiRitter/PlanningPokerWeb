@@ -66,9 +66,9 @@ input {
 .main {
 	grid-area: 1 / 1 / 2 / 2;/* row-start / column-start / row-end / column-end */
 	margin: 1em 1em 0.5em 1em;/* top | right | bottom | left */
-  place-self: center; /* align-self | justify-self */
+  place-self: stretch; /* align-self | justify-self */
 	display: grid;
-	grid-template-rows: 1fr auto 1fr;
+	grid-template-rows: 1fr auto;
 }
 
 .footer {

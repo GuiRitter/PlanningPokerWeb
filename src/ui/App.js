@@ -8,6 +8,7 @@ import { restoreFromLocalStorage, toggleTheme } from '../flux/action/index';
 import { getLog } from '../util/log';
 
 import Connect from './Connect';
+import Vote from './Vote';
 
 import './App.css';
 
@@ -75,6 +76,7 @@ function App(props) {
 	const prevProps = usePrevious(props);
 
 	const theme = useSelector(state => ((state || {}).reducer || {}).colorTheme);
+	const token = useSelector(state => ((state || {}).reducer || {}).token);
 
 	const [themeField, setThemeField] = useState(null);
 
@@ -89,7 +91,7 @@ function App(props) {
 		}
 	});
 
-	return <><div className='main'><Connect/></div><select
+	return <><div className='main'>{token ? <Vote/> : <Connect/>}</div><select
 		className='footer'
 		onChange={() => dispatch(toggleTheme())}
 		ref={ref => { if (ref) { setThemeField(ref); } }}

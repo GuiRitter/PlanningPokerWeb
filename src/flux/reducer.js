@@ -12,7 +12,8 @@ const initialState =
 {
 	abortMethod: null,
 	colorTheme: theme.LIGHT,
-	isLoading: false
+	isLoading: false,
+	token: null,
 };
 
 const reducer = (currentState = initialState, action) => {
@@ -42,6 +43,12 @@ const reducer = (currentState = initialState, action) => {
 
 		case type.RESTORE_FROM_LOCAL_STORAGE:
 			return JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME)) || initialState;
+
+		case type.SET_TOKEN:
+			return updateLocalStorage({
+				...currentState,
+				token: action.token
+			});
 
 		case type.TOGGLE_THEME:
 			return updateLocalStorage({

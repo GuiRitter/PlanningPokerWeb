@@ -1,0 +1,23 @@
+.vote-main {
+	grid-area: 1 / 1 / 2 / 2;/* row-start / column-start / row-end / column-end */
+	margin: 0em 0em 0em 0em;/* top | right | bottom | left */
+	place-self: stretch; /* align-self | justify-self */
+	display: grid;
+	grid-template-rows: 1fr auto;
+}
+
+.placeholder {
+	color: blue;
+	background-color: blue;
+	width: 10em;
+	height: 10em;
+	grid-area: 1 / 1 / 2 / 2;/* row-start / column-start / row-end / column-end */
+	margin: 1em 1em 0.5em 1em;/* top | right | bottom | left */
+	place-self: center; /* align-self | justify-self */
+}
+
+.disconnect-button {
+	grid-area: 2 / 1 / 3 / 2;/* row-start / column-start / row-end / column-end */
+	margin: 0.5em 1em 0em 1em;/* top | right | bottom | left */
+  place-self: center; /* align-self | justify-self */
+}

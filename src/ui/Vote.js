@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setToken } from '../flux/action';
 
 import { getLog } from '../util/log';
 
-import './Connect.css';
+import './Vote.css';
 
-const log = getLog('Connect.');
+const log = getLog('Vote.');
 
 function setFieldFromPathName(idField) {
 	if (idField) {
@@ -33,35 +33,29 @@ function usePrevious(value) {
 	return ref.current;
 }
 
-function Connect(props) {
+function Vote(props) {
 
 	const didMountRef = useRef(false);
 	const dispatch = useDispatch();
 	const prevProps = usePrevious(props);
 
-	const [idField, setIdField] = useState(null);
-
-	log('Connect', { props, prevProps });
+	log('Vote', { props, prevProps });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps/*, dispatch*/, idField);
+			componentDidUpdate(props, prevProps/*, dispatch*/);
 		} else {
 			didMountRef.current = true;
 			// componentDidMount(props, dispatch, themeField, theme);
 		}
 	});
 
-	return <div className='connect-main' ><input className='user-name-input' /><input
-		className='connect-button'
-		// TODO
-		onClick={() => dispatch(setToken('// TO DO'))}
+	return <div className='vote-main'><div className='placeholder' /><input
+		className='disconnect-button'
+		onClick={() => dispatch(setToken(null))}
 		type='button'
-		value='Connect'
-	/><input
-		className='id-input'
-		ref={ref => { if (ref) { setIdField(ref); } }}
+		value='Disconnect'
 	/></div>;
 }
 
-export default Connect;
+export default Vote;

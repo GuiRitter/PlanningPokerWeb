@@ -10,6 +10,11 @@ export const restoreFromLocalStorage = () => ({
 	type: type.RESTORE_FROM_LOCAL_STORAGE
 });
 
+export const setToken = token => ({
+	type: type.SET_TOKEN,
+	token
+});
+
 export const toggleTheme = () => ({
 	type: type.TOGGLE_THEME
 });

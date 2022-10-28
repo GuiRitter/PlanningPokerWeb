@@ -5,6 +5,6 @@
 ✓ replace the fixed size div with a field for user name, a "Connect" button and an Id field
 ✓ when opening the page with an Id in the URL, fill the Id in the field
 ✓ compartmentalize layout
-add switching between "Connect" and "Vote"
+✓ add switching between "Connect" and "Vote"
 decide what to do when in "Vote" and a URL is accessed
 to do...
