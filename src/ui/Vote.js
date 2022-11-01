@@ -1,28 +1,28 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setToken } from '../flux/action';
 
+import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';
 
 import './Vote.css';
 
 const log = getLog('Vote.');
 
-function setFieldFromPathName(idField) {
-	if (idField) {
-		const pathName = window.location.pathname;
-		if (pathName) {
-			idField.value = pathName.replace('/', '');
-		}
+function setFieldFromPathName(dispatch, token) {
+	const pathName = getTokenFromPathName();
+	log('setFieldFromPathName', { token, pathName });
+	if (pathName && (token !== pathName)) {
+		dispatch(setToken(null));
 	}
 }
 
-function componentDidUpdate(props, prevProps/*, dispatch*/, idField) {
+function componentDidUpdate(props, prevProps, dispatch, token) {
 
-	log('componentDidUpdate', { props, prevProps, idField });
+	log('componentDidUpdate', { props, prevProps });
 
-	setFieldFromPathName(idField);
+	setFieldFromPathName(dispatch, token);
 }
 
 function usePrevious(value) {
@@ -39,11 +39,13 @@ function Vote(props) {
 	const dispatch = useDispatch();
 	const prevProps = usePrevious(props);
 
-	log('Vote', { props, prevProps });
+	const token = useSelector(state => ((state || {}).reducer || {}).token);
+
+	log('Vote', { props, prevProps, token });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps/*, dispatch*/);
+			componentDidUpdate(props, prevProps, dispatch, token);
 		} else {
 			didMountRef.current = true;
 			// componentDidMount(props, dispatch, themeField, theme);

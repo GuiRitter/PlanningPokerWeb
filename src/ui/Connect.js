@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { setToken } from '../flux/action';
 
+import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';
 
 import './Connect.css';
@@ -11,9 +12,9 @@ const log = getLog('Connect.');
 
 function setFieldFromPathName(idField) {
 	if (idField) {
-		const pathName = window.location.pathname;
+		const pathName = getTokenFromPathName();
 		if (pathName) {
-			idField.value = pathName.replace('/', '');
+			idField.value = pathName;
 		}
 	}
 }
@@ -55,7 +56,7 @@ function Connect(props) {
 	return <div className='connect-main' ><input className='user-name-input' /><input
 		className='connect-button'
 		// TODO
-		onClick={() => dispatch(setToken('// TO DO'))}
+		onClick={() => dispatch(setToken(idField.value))}
 		type='button'
 		value='Connect'
 	/><input

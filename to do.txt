@@ -6,5 +6,5 @@
 ✓ when opening the page with an Id in the URL, fill the Id in the field
 ✓ compartmentalize layout
 ✓ add switching between "Connect" and "Vote"
-decide what to do when in "Vote" and a URL is accessed
+✓ disconnect when connected and a URL with a different token is accessed
 to do...
