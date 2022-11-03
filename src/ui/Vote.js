@@ -10,7 +10,7 @@ import './Vote.css';
 
 const log = getLog('Vote.');
 
-function setFieldFromPathName(dispatch, token) {
+function disconnectOnDifferentPathName(dispatch, token) {
 	const pathName = getTokenFromPathName();
 	log('setFieldFromPathName', { token, pathName });
 	if (pathName && (token !== pathName)) {
@@ -22,7 +22,7 @@ function componentDidUpdate(props, prevProps, dispatch, token) {
 
 	log('componentDidUpdate', { props, prevProps });
 
-	setFieldFromPathName(dispatch, token);
+	disconnectOnDifferentPathName(dispatch, token);
 }
 
 function usePrevious(value) {
