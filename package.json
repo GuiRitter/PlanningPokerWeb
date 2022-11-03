@@ -1,7 +1,8 @@
 {
   "name": "planning_poker",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "private": true,
+  "homepage": "planning_poker/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
