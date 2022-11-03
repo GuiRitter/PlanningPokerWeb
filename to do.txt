@@ -7,4 +7,6 @@
 ✓ compartmentalize layout
 ✓ add switching between "Connect" and "Vote"
 ✓ disconnect when connected and a URL with a different token is accessed
+get id from peerjs-server
+treat connection errors
 to do...

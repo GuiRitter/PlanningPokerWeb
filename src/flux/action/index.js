@@ -1,6 +1,6 @@
 import { Peer } from 'peerjs';
 
-// import { PEER_JS_SERVER_URL } from '../../constant/system';
+import { PEER_JS_SERVER_HOST, PEER_JS_SERVER_PATH, PEER_JS_SERVER_PORT } from '../../constant/system';
 
 import * as type from '../type';
 
@@ -17,15 +17,13 @@ export const setToken = token => ({
 	token
 });
 
-export const test = token => {
+export const test = token => dispatch => {
 	const peer = new Peer({
-		host: 'guilherme-alan-ritter.net',
-		// port: 49335,
-		port: '',
-		path: '/peerjs-server/api',
-		referrerPolicy: 'no-referrer',
+		host: PEER_JS_SERVER_HOST,
+		port: PEER_JS_SERVER_PORT,
+		path: PEER_JS_SERVER_PATH
 	});
-	peer.on('open', id => alert(id));
+	peer.on('open', id => dispatch(setToken(id)));
 };
 
 export const toggleTheme = () => ({
