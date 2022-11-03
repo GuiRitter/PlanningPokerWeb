@@ -25,7 +25,7 @@ export const test = token => {
 		path: '/peerjs-server/api',
 		referrerPolicy: 'no-referrer',
 	});
-	alert(peer.id);
+	peer.on('open', id => alert(id));
 };
 
 export const toggleTheme = () => ({
