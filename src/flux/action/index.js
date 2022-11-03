@@ -1,3 +1,5 @@
+import { Peer } from 'peerjs';
+
 // import { PEER_JS_SERVER_URL } from '../../constant/system';
 
 import * as type from '../type';
@@ -14,6 +16,17 @@ export const setToken = token => ({
 	type: type.SET_TOKEN,
 	token
 });
+
+export const test = token => {
+	const peer = new Peer({
+		host: 'guilherme-alan-ritter.net',
+		// port: 49335,
+		port: '',
+		path: '/peerjs-server/api',
+		referrerPolicy: 'no-referrer',
+	});
+	alert(peer.id);
+};
 
 export const toggleTheme = () => ({
 	type: type.TOGGLE_THEME

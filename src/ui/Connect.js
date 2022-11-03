@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setToken } from '../flux/action';
+import { setToken, test } from '../flux/action';
 
 import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';
@@ -56,7 +56,8 @@ function Connect(props) {
 	return <div className='connect-main' ><input className='user-name-input' /><input
 		className='connect-button'
 		// TODO
-		onClick={() => dispatch(setToken(idField.value))}
+		// onClick={() => dispatch(setToken(idField.value))}
+		onClick={() => dispatch(test(idField.value))}
 		type='button'
 		value='Connect'
 	/><input
