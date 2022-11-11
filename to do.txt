@@ -3,10 +3,12 @@
 ✓ add local storage to remember combo box (will not remember on company browser, but we'll have to live with that)
 ✓ layout with fixed size div centered on the remaining space above and the combo box on the space below occupying as little space as possible
 ✓ replace the fixed size div with a field for user name, a "Connect" button and an Id field
-✓ when opening the page with an Id in the URL, fill the Id in the field
+✗ when opening the page with an Id in the URL, fill the Id in the field
 ✓ compartmentalize layout
 ✓ add switching between "Connect" and "Vote"
 ✓ disconnect when connected and a URL with a different token is accessed
-get id from peerjs-server
+✓ get id from peerjs-server
+fix URL id in production
+set id to the URL?
 treat connection errors
 to do...
