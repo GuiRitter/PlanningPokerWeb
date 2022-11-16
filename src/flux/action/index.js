@@ -27,10 +27,10 @@ export const setToken = token => dispatch => {
 	} else {
 		window.history.pushState(window.location.pathname);
 	}
-	peer.on('open', id => dispatch({
+	dispatch({
 		type: type.SET_TOKEN,
 		token
-	}));
+	});
 };
 
 export const toggleTheme = () => ({
