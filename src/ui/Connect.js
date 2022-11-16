@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { connect, setToken } from '../flux/action';
+import { connect } from '../flux/action';
 
 import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';

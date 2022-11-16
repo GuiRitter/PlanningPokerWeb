@@ -21,10 +21,17 @@ export const restoreFromLocalStorage = () => ({
 	type: type.RESTORE_FROM_LOCAL_STORAGE
 });
 
-export const setToken = token => ({
-	type: type.SET_TOKEN,
-	token
-});
+export const setToken = token => dispatch => {
+	if (token) {
+		window.history.pushState(`${window.location.pathname}?id=${token}`);
+	} else {
+		window.history.pushState(window.location.pathname);
+	}
+	peer.on('open', id => dispatch({
+		type: type.SET_TOKEN,
+		token
+	}));
+};
 
 export const toggleTheme = () => ({
 	type: type.TOGGLE_THEME
