@@ -18,9 +18,11 @@ function disconnectOnDifferentPathName(dispatch, token) {
 	}
 }
 
-function componentDidMount(props, dispatch) {
+function componentDidMount(props, dispatch, token) {
 
-	log('componentDidMount', { props });
+	log('componentDidMount', { props, token });
+
+	disconnectOnDifferentPathName(dispatch, token);
 }
 
 function componentDidUpdate(props, prevProps, dispatch, token) {
@@ -53,7 +55,7 @@ function Vote(props) {
 			componentDidUpdate(props, prevProps, dispatch, token);
 		} else {
 			didMountRef.current = true;
-			componentDidMount(props, dispatch);
+			componentDidMount(props, dispatch, token);
 		}
 	});
 

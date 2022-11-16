@@ -1,6 +1,6 @@
 {
   "name": "planning_poker",
-  "version": "0.11.3",
+  "version": "0.11.4",
   "private": true,
   "homepage": "planning_poker/",
   "dependencies": {
