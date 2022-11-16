@@ -4,7 +4,7 @@ import { PEER_JS_SERVER_HOST, PEER_JS_SERVER_PATH, PEER_JS_SERVER_PORT } from '.
 
 import * as type from '../type';
 
-import { getLog } from '../util/log';
+import { getLog } from '../../util/log';
 
 const log = getLog('flux.action.index.');
 
