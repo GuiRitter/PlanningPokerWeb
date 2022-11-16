@@ -19,7 +19,7 @@ export const connect = token => dispatch => {
 		path: PEER_JS_SERVER_PATH
 	});
 	peer.on('open', id => {
-		window.history.pushState('', '', `${window.location.pathname}?id=${token}`);
+		window.history.pushState('', '', `${window.location.pathname}?id=${id}`);
 		dispatch(setToken(id));
 	});
 };
