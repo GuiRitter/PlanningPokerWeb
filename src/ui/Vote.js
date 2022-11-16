@@ -20,7 +20,7 @@ function disconnectOnDifferentPathName(dispatch, token) {
 
 function componentDidMount(props, dispatch) {
 
-	log('componentDidUpdate', { props });
+	log('componentDidMount', { props });
 }
 
 function componentDidUpdate(props, prevProps, dispatch, token) {
