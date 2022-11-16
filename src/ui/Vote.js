@@ -52,7 +52,9 @@ function Vote(props) {
 		}
 	});
 
-	return <div className='vote-main'><div className='placeholder' /><input
+	let shareUrl = `${window.location.origin}${window.location.pathname}?id=${token}`;
+
+	return <div className='vote-main'><div className='placeholder' /><p className='share'>Share this session: <a href={shareUrl}>{shareUrl}</a></p><input
 		className='disconnect-button'
 		onClick={() => dispatch(setToken(null))}
 		type='button'
