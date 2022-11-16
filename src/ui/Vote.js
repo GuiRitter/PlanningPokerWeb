@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setToken } from '../flux/action';
+import { disconnect, setToken } from '../flux/action';
 
 import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';
@@ -63,7 +63,7 @@ function Vote(props) {
 
 	return <div className='vote-main'><div className='placeholder' /><p className='share'>Share this session: <a href={shareUrl}>{shareUrl}</a></p><input
 		className='disconnect-button'
-		onClick={() => dispatch(setToken(null))}
+		onClick={() => dispatch(disconnect())}
 		type='button'
 		value='Disconnect'
 	/></div>;
