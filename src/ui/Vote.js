@@ -14,7 +14,7 @@ function disconnectOnDifferentPathName(dispatch, token) {
 	const pathName = getTokenFromPathName();
 	log('disconnectOnDifferentPathName', { token, pathName });
 	if (pathName && (token !== pathName)) {
-		dispatch(setToken(null));
+		dispatch(setToken(null)); // TODO maybe not null, maybe something else
 	}
 }
 

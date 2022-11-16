@@ -18,7 +18,15 @@ export const connect = token => dispatch => {
 		port: PEER_JS_SERVER_PORT,
 		path: PEER_JS_SERVER_PATH
 	});
-	peer.on('open', id => dispatch(setToken(id)));
+	peer.on('open', id => {
+		window.history.pushState('', '', `${window.location.pathname}?id=${token}`);
+		dispatch(setToken(id));
+	});
+};
+
+export const disconnect = () => dispatch => {
+	window.history.pushState('', '', window.location.pathname);
+	dispatch(setToken(null));
 };
 
 export const restoreFromLocalStorage = () => ({
@@ -27,11 +35,6 @@ export const restoreFromLocalStorage = () => ({
 
 export const setToken = token => dispatch => {
 	log('setToken', { token });
-	if (token) {
-		window.history.pushState('', '', `${window.location.pathname}?id=${token}`);
-	} else {
-		window.history.pushState('', '', window.location.pathname);
-	}
 	dispatch({
 		type: type.SET_TOKEN,
 		token
