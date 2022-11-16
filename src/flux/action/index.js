@@ -13,7 +13,7 @@ const log = getLog('flux.action.index.');
 // });
 
 export const connect = token => dispatch => {
-	const peer = new Peer(null, {
+	const peer = new Peer('', {
 		host: PEER_JS_SERVER_HOST,
 		port: PEER_JS_SERVER_PORT,
 		path: PEER_JS_SERVER_PATH
