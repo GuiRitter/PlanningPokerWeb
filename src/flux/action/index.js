@@ -28,7 +28,7 @@ export const restoreFromLocalStorage = () => ({
 export const setToken = token => dispatch => {
 	log('setToken', { token });
 	if (token) {
-		window.history.pushState(`${window.location.pathname}?id=${token}`);
+		window.history.pushState('', '', `${window.location.pathname}?id=${token}`);
 	} else {
 		window.history.pushState(window.location.pathname);
 	}
