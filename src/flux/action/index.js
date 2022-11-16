@@ -30,7 +30,7 @@ export const setToken = token => dispatch => {
 	if (token) {
 		window.history.pushState('', '', `${window.location.pathname}?id=${token}`);
 	} else {
-		window.history.pushState(window.location.pathname);
+		window.history.pushState('', '', window.location.pathname);
 	}
 	dispatch({
 		type: type.SET_TOKEN,
