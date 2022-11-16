@@ -12,10 +12,15 @@ const log = getLog('Vote.');
 
 function disconnectOnDifferentPathName(dispatch, token) {
 	const pathName = getTokenFromPathName();
-	log('setFieldFromPathName', { token, pathName });
+	log('disconnectOnDifferentPathName', { token, pathName });
 	if (pathName && (token !== pathName)) {
 		dispatch(setToken(null));
 	}
+}
+
+function componentDidMount(props, dispatch) {
+
+	log('componentDidUpdate', { props });
 }
 
 function componentDidUpdate(props, prevProps, dispatch, token) {
@@ -48,7 +53,7 @@ function Vote(props) {
 			componentDidUpdate(props, prevProps, dispatch, token);
 		} else {
 			didMountRef.current = true;
-			// componentDidMount(props, dispatch, themeField, theme);
+			componentDidMount(props, dispatch);
 		}
 	});
 
