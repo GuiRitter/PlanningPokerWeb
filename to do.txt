@@ -10,6 +10,6 @@
 ✓ get id from peerjs-server
 ✓ fix URL id in production
 ✓ set id to the URL
-consider provided id
+✓ consider provided id
 treat connection errors
 to do...

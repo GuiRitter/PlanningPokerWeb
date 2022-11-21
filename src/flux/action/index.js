@@ -22,6 +22,21 @@ export const connect = token => dispatch => {
 		window.history.pushState('', '', `${window.location.pathname}?id=${id}`);
 		dispatch(setToken(id));
 	});
+	peer.on('connection', dataConnection => {
+		log('connect.connection', { dataConnection });
+	});
+	peer.on('call', mediaConnection => {
+		log('connect.call', { mediaConnection });
+	});
+	peer.on('close', () => {
+		log('connect.close');
+	});
+	peer.on('disconnected', () => {
+		log('connect.disconnected');
+	});
+	peer.on('error', err => {
+		log('connect.error', { err });
+	});
 };
 
 export const disconnect = () => dispatch => {
