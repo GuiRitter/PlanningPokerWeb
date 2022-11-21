@@ -13,12 +13,17 @@ const log = getLog('flux.action.index.');
 // });
 
 export const connect = token => dispatch => {
-	const peer = new Peer(token, {
-		host: PEER_JS_SERVER_HOST,
-		port: PEER_JS_SERVER_PORT,
-		path: PEER_JS_SERVER_PATH
-	});
+	try {
+		const peer = new Peer(token, {
+			host: PEER_JS_SERVER_HOST,
+			port: PEER_JS_SERVER_PORT,
+			path: PEER_JS_SERVER_PATH
+		});
+	} catch (ex) {
+		log('connect', { ex });
+	}
 	peer.on('open', id => {
+		log('connect.open', { id });
 		window.history.pushState('', '', `${window.location.pathname}?id=${id}`);
 		dispatch(setToken(id));
 	});
