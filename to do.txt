@@ -12,4 +12,5 @@
 ✓ set id to the URL
 ✓ consider provided id
 treat connection errors
+test if it's possible to continue connected on page reload
 to do...

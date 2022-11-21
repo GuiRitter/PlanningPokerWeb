@@ -39,9 +39,20 @@ export const connect = token => dispatch => {
 	});
 	peer.on('disconnected', () => {
 		log('connect.disconnected');
+		// TODO error with type 'network' also fires this; decide what to do if it happens by other means and after finding a way to differentiate them
 	});
 	peer.on('error', err => {
 		log('connect.error', { err });
+		if (err && err.type) {
+			switch (err.type) {
+				// fired when the server is stopped or when creating a new Peer with the server offline
+				case 'network':
+					alert(err.message);
+					dispatch(setToken(null));
+					break;
+				default:
+			}
+		}
 	});
 };
 
