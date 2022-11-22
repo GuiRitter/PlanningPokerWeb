@@ -54,7 +54,7 @@ const reducer = (currentState = initialState, action) => {
 			});
 
 		case type.REMOVE_PEER:
-			peerList = peerList.filter(peer => peer != action.peer);
+			peerList = peerList.filter(peer => peer !== action.peer);
 			return updateLocalStorage({
 				...currentState,
 				peerList
