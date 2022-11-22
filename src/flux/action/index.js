@@ -22,6 +22,29 @@ export const connect = tokenPeer => dispatch => {
 		log('connect.open', { id });
 		window.history.pushState('', '', `${window.location.pathname}?id=${id}`);
 		dispatch(setToken(id));
+		if (tokenPeer) {
+			dispatch({
+				type: type.ADD_PEER,
+				peer: tokenPeer
+			});
+			let connection = peer.connect(tokenPeer);
+			connection.on('open', () => {
+				log(`peer.${tokenPeer}.open`);
+				connection.on('data', data => {
+					log(`peer.${tokenPeer}.data`, { data });
+				});
+			});
+			connection.on('close', () => {
+				log(`peer.${tokenPeer}.close`);
+				dispatch({
+					type: type.REMOVE_PEER,
+					peer: tokenPeer
+				});
+			});
+			connection.on('error', err => {
+				log(`peer.${tokenPeer}.error`, { err });
+			});
+		}
 	});
 	peer.on('connection', dataConnection => {
 		log('connect.connection', { dataConnection });
