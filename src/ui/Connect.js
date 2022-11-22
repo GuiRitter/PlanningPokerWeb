@@ -10,20 +10,20 @@ import './Connect.css';
 
 const log = getLog('Connect.');
 
-function setFieldFromPathName(idField) {
-	if (idField) {
-		const pathName = getTokenFromPathName();
-		if (pathName) {
-			idField.value = pathName;
+function setFieldFromPathName(tokerPeerField) {
+	if (tokerPeerField) {
+		const tokenPeer = getTokenFromPathName();
+		if (tokenPeer) {
+			tokerPeerField.value = tokenPeer;
 		}
 	}
 }
 
-function componentDidUpdate(props, prevProps/*, dispatch*/, idField) {
+function componentDidUpdate(props, prevProps/*, dispatch*/, tokerPeerField) {
 
-	log('componentDidUpdate', { props, prevProps, idField });
+	log('componentDidUpdate', { props, prevProps, tokerPeerField });
 
-	setFieldFromPathName(idField);
+	setFieldFromPathName(tokerPeerField);
 }
 
 function usePrevious(value) {
@@ -40,13 +40,13 @@ function Connect(props) {
 	const dispatch = useDispatch();
 	const prevProps = usePrevious(props);
 
-	const [idField, setIdField] = useState(null);
+	const [tokerPeerField, setTokenPeerField] = useState(null);
 
 	log('Connect', { props, prevProps });
 
 	useEffect(() => {
 		if (didMountRef.current) {
-			componentDidUpdate(props, prevProps/*, dispatch*/, idField);
+			componentDidUpdate(props, prevProps/*, dispatch*/, tokerPeerField);
 		} else {
 			didMountRef.current = true;
 			// componentDidMount(props, dispatch, themeField, theme);
@@ -55,12 +55,12 @@ function Connect(props) {
 
 	return <div className='connect-main' ><input className='user-name-input' /><input
 		className='connect-button'
-		onClick={() => dispatch(connect(idField.value))}
+		onClick={() => dispatch(connect(tokerPeerField.value))}
 		type='button'
 		value='Connect'
 	/><input
-		className='id-input'
-		ref={ref => { if (ref) { setIdField(ref); } }}
+		className='token-peer-input'
+		ref={ref => { if (ref) { setTokenPeerField(ref); } }}
 	/></div>;
 }
 

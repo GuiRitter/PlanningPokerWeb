@@ -18,7 +18,7 @@
 	place-self: center; /* align-self | justify-self */
 }
 
-.id-input {
+.token-peer-input {
 	grid-area: 3 / 1 / 4 / 2;/* row-start / column-start / row-end / column-end */
 	margin: 0.5em 0em 0em 0em;/* top | right | bottom | left */
 	place-self: start center; /* align-self | justify-self */

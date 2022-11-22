@@ -1,35 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { disconnect, setToken } from '../flux/action';
+import { disconnect } from '../flux/action';
 
-import { getTokenFromPathName } from '../util/http';
 import { getLog } from '../util/log';
 
 import './Vote.css';
 
 const log = getLog('Vote.');
 
-function disconnectOnDifferentPathName(dispatch, token) {
-	const pathName = getTokenFromPathName();
-	log('disconnectOnDifferentPathName', { token, pathName });
-	if (pathName && (token !== pathName)) {
-		dispatch(setToken(null));
-	}
-}
-
 function componentDidMount(props, dispatch, token) {
 
 	log('componentDidMount', { props, token });
-
-	disconnectOnDifferentPathName(dispatch, token);
 }
 
 function componentDidUpdate(props, prevProps, dispatch, token) {
 
 	log('componentDidUpdate', { props, prevProps });
-
-	disconnectOnDifferentPathName(dispatch, token);
 }
 
 function usePrevious(value) {

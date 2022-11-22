@@ -13,6 +13,7 @@ const initialState =
 	abortMethod: null,
 	colorTheme: theme.LIGHT,
 	isLoading: false,
+	peerList: [],
 	token: null,
 };
 
