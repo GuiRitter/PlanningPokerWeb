@@ -13,13 +13,15 @@ const initialState =
 	abortMethod: null,
 	colorTheme: theme.LIGHT,
 	isLoading: false,
+	peer: null,
 	peerList: [],
-	token: null,
+	token: null
 };
 
 const reducer = (currentState = initialState, action) => {
 	log('reducer', { currentState, action });
 
+	let peer = currentState.peer;
 	let peerList = currentState.peerList;
 
 	switch (action.type) {
@@ -65,11 +67,13 @@ const reducer = (currentState = initialState, action) => {
 
 		case type.SET_TOKEN:
 			if (!action.token) {
+				peer = null;
 				peerList = [];
 			}
 			return updateLocalStorage({
 				...currentState,
 				token: action.token,
+				peer,
 				peerList
 			});
 

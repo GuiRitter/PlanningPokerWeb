@@ -21,7 +21,7 @@ export const connect = tokenPeer => dispatch => {
 	peer.on('open', id => {
 		log('connect.open', { id });
 		window.history.pushState('', '', `${window.location.pathname}?id=${id}`);
-		dispatch(setToken(id));
+		dispatch(setToken(id, peer));
 		if (tokenPeer) {
 			dispatch({
 				type: type.ADD_PEER,
@@ -66,7 +66,7 @@ export const connect = tokenPeer => dispatch => {
 				// fired when the server is stopped or when creating a new Peer with the server offline
 				case 'network':
 					alert(err.message);
-					dispatch(setToken(null));
+					dispatch(setToken(null, null));
 					break;
 				default:
 			}
@@ -76,18 +76,19 @@ export const connect = tokenPeer => dispatch => {
 
 export const disconnect = () => dispatch => {
 	window.history.pushState('', '', window.location.pathname);
-	dispatch(setToken(null));
+	dispatch(setToken(null, null));
 };
 
 export const restoreFromLocalStorage = () => ({
 	type: type.RESTORE_FROM_LOCAL_STORAGE
 });
 
-export const setToken = token => dispatch => {
+export const setToken = (token, peer) => dispatch => {
 	log('setToken', { token });
 	dispatch({
 		type: type.SET_TOKEN,
-		token
+		token,
+		peer
 	});
 };
 
