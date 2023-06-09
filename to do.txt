@@ -13,7 +13,9 @@
 ✓ 0.11.0 consider provided id
 ✓ 0.12.0 delete code before restructure
 ✓ 0.13.0 test connection to peer
-0.13.2 store peer server object in the reducer
+✓ 0.13.2 store peer server object in the reducer
+✓ 0.13.3 added logo
+✓ 0.13.4 added user name and token placeholders and fixed manifest
 restructure: URL token is the own token or a peer's token; when connecting, fill it with own token; when acessing; try to connect to the server with the same previous token and try to connect to the peer with the URL token, then replace URL by own token
 treat connection errors
 test if it's possible to continue connected on page reload

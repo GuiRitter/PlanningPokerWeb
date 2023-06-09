@@ -1,6 +1,6 @@
 {
   "name": "planning_poker",
-  "version": "0.13.2",
+  "version": "0.13.4",
   "private": true,
   "homepage": "planning_poker/",
   "dependencies": {
@@ -19,6 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "i": "npx update-browserslist-db@latest && npm i",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -53,13 +53,19 @@ function Connect(props) {
 		}
 	});
 
-	return <div className='connect-main' ><input className='user-name-input' /><input
+	return <div className='connect-main' ><input
+		className='user-name-input'
+		id='user-name-input'
+		placeholder='User name'
+	/><input
 		className='connect-button'
 		onClick={() => dispatch(connect(tokerPeerField.value))}
 		type='button'
 		value='Connect'
 	/><input
 		className='token-peer-input'
+		id='token-peer-input'
+		placeholder='Peer token'
 		ref={ref => { if (ref) { setTokenPeerField(ref); } }}
 	/></div>;
 }
